@@ -21,7 +21,8 @@ class ArrayObjectA extends ArrayObject {
 	 * @return \ArrayObjectA
 	 */
 	public function merge(ArrayObjectA $Array) {
-		return new ArrayObjectA(array_merge($this->getArrayCopy(), $Array->getArrayCopy()));
+		$this->exchangeArray(array_merge($this->getArrayCopy(), $Array->getArrayCopy()));
+		return $this;
 	}
 
 	/**
