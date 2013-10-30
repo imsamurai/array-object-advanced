@@ -32,8 +32,8 @@ class ArrayObjectA extends ArrayObject {
 	 * @return \ArrayObjectA
 	 */
 	public function map(callable $callback) {
-		foreach ($this->getIterator() as $index => $ActiveRecord) {
-			$this->offsetSet($index, $callback($ActiveRecord));
+		foreach ($this->getIterator() as $index => $item) {
+			$this->offsetSet($index, $callback($item));
 		}
 		return $this;
 	}
@@ -59,6 +59,22 @@ class ArrayObjectA extends ArrayObject {
 	 */
 	public function reduce(callable $callback, $init = null) {
 		return array_reduce(iterator_to_array($this->getIterator()), $callback, $init);
+	}
+	
+	/**
+	 * Group elements of array
+	 * 
+	 * @param callable $callback
+	 * @return \ArrayObjectA
+	 */
+	public function group(callable $callback) {
+		$array = array();
+		foreach ($this->getIterator() as $index => $item) {
+			$group = $callback($item);
+			$array[$group][] = $item;
+		}
+		$this->exchangeArray($array);
+		return $this;
 	}
 
 }

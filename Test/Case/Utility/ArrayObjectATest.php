@@ -95,6 +95,19 @@ class ArrayObjectATest extends PHPUnit_Framework_TestCase {
 		}
 	}
 
+	/**
+	 * Test group
+	 * 
+	 * @param ArrayObjectA $Array1
+	 * @param callable $callback
+	 * @param ArrayObjectA $Result
+	 * 
+	 * @dataProvider groupProvider
+	 */
+	public function testGroup($Array1, $callback, $Result) {
+		$this->assertEquals($Array1->group($callback), $Result);
+	}
+
 	public function mergeProvider() {
 		return array(
 			array(new ArrayObjectA(array('a', 'c', 'd')), new ArrayObjectA(array('b', 'c', 'e')), new ArrayObjectA(array('a', 'c', 'd', 'b', 'c', 'e')), true),
@@ -132,6 +145,29 @@ class ArrayObjectATest extends PHPUnit_Framework_TestCase {
 			array(new ArrayObjectA(array('a', 'c', 'd')), function($e, $acc) {
 			return (int) $acc + 1;
 		}, 0, false)
+		);
+	}
+
+	public function groupProvider() {
+		return array(
+			array(
+				new ArrayObjectA(array(
+					array('g' => 1, 'n' => 1),
+					array('g' => 2, 'n' => 2),
+					array('g' => 1, 'n' => 3)
+						)
+				), function($e) {
+			return $e['g'];
+		}, new ArrayObjectA(array(
+					1 => array(
+						array('g' => 1, 'n' => 1),
+						array('g' => 1, 'n' => 3)
+					),
+					2 => array(
+						array('g' => 2, 'n' => 2)
+					)
+						)
+				))
 		);
 	}
 
