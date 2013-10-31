@@ -21,8 +21,7 @@ class ArrayObjectA extends ArrayObject {
 	 * @return \ArrayObjectA
 	 */
 	public function merge(ArrayObjectA $Array) {
-		$this->exchangeArray(array_merge($this->getArrayCopy(), $Array->getArrayCopy()));
-		return $this;
+		return new ArrayObjectA(array_merge($this->getArrayCopy(), $Array->getArrayCopy()));
 	}
 
 	/**
@@ -32,10 +31,11 @@ class ArrayObjectA extends ArrayObject {
 	 * @return \ArrayObjectA
 	 */
 	public function map(callable $callback) {
-		foreach ($this->getIterator() as $index => $item) {
-			$this->offsetSet($index, $callback($item));
+		$that = clone $this;
+		foreach ($that->getIterator() as $index => $item) {
+			$that->offsetSet($index, $callback($item));
 		}
-		return $this;
+		return $that;
 	}
 
 	/**
@@ -73,8 +73,7 @@ class ArrayObjectA extends ArrayObject {
 			$group = $callback($item);
 			$array[$group][] = $item;
 		}
-		$this->exchangeArray($array);
-		return $this;
+		return new ArrayObjectA($array);
 	}
 
 }
