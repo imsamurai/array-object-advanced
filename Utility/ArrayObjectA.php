@@ -12,7 +12,7 @@
  * @package ArrayObjectA
  * @subpackage Utility
  */
-class ArrayObjectA extends ArrayObject {
+class ArrayObjectA extends ArrayObject implements JsonSerializable {
 
 	/**
 	 * Merge arrays
@@ -61,7 +61,7 @@ class ArrayObjectA extends ArrayObject {
 	public function reduce(callable $callback, $init = null) {
 		return array_reduce(iterator_to_array($this->getIterator()), $callback, $init);
 	}
-	
+
 	/**
 	 * Group elements of array
 	 * 
@@ -75,6 +75,15 @@ class ArrayObjectA extends ArrayObject {
 			$array[$group][] = $item;
 		}
 		return new ArrayObjectA($array);
+	}
+
+	/**
+	 * For json serialization
+	 * 
+	 * @return array
+	 */
+	public function jsonSerialize() {
+		return $this->getArrayCopy();
 	}
 
 }

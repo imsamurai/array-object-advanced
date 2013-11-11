@@ -108,6 +108,18 @@ class ArrayObjectATest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals($Array1->group($callback), $Result);
 	}
 
+	/**
+	 * Test json serialization
+	 * 
+	 * @param ArrayObjectA $Array
+	 * @param string $result
+	 * 
+	 * @dataProvider jsonProvider
+	 */
+	public function testSerialize($Array, $result) {
+		$this->assertSame(json_encode($Array), $result);
+	}
+
 	public function mergeProvider() {
 		return array(
 			array(new ArrayObjectA(array('a', 'c', 'd')), new ArrayObjectA(array('b', 'c', 'e')), new ArrayObjectA(array('a', 'c', 'd', 'b', 'c', 'e')), true),
@@ -169,6 +181,33 @@ class ArrayObjectATest extends PHPUnit_Framework_TestCase {
 						)
 				))
 		);
+	}
+
+	public function jsonProvider() {
+		$arrays = array(
+			array(
+				array('g' => 1, 'n' => 1),
+				array('g' => 2, 'n' => 2),
+				array('g' => 1, 'n' => 3)
+			),
+			array(234),
+			array(
+				1 => array(
+					array('g' => 1, 'n' => 1),
+					array('g' => 1, 'n' => 3)
+				),
+				2 => array(
+					array('g' => 2, 'n' => 2)
+				)
+			)
+		);
+
+		$data = array();
+		foreach ($arrays as $array) {
+			$data[] = array(new ArrayObjectA($array), json_encode($array));
+		}
+
+		return $data;
 	}
 
 }
