@@ -85,5 +85,20 @@ class ArrayObjectA extends ArrayObject implements JsonSerializable {
 	public function jsonSerialize() {
 		return $this->getArrayCopy();
 	}
+	
+	/**
+	 * Make unique
+	 * 
+	 * @param callable $callback Groupping callback
+	 * @return \ArrayObjectA
+	 */
+	public function unique(callable $callback) {
+		$that = $this
+						->group($callback)
+						->map(function($group) {
+							return $group[0];
+						});
+		return new ArrayObjectA(array_values($that->getArrayCopy()));
+	}
 
 }

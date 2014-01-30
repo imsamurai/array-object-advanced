@@ -119,6 +119,19 @@ class ArrayObjectATest extends PHPUnit_Framework_TestCase {
 	public function testSerialize($Array, $result) {
 		$this->assertSame(json_encode($Array), $result);
 	}
+	
+	/**
+	 * Test unique
+	 * 
+	 * @param ArrayObjectA $Array1
+	 * @param callable $callback
+	 * @param ArrayObjectA $Result
+	 * 
+	 * @dataProvider uniqueProvider
+	 */
+	public function testUnique($Array1, $callback, $Result) {
+		$this->assertEquals($Array1->unique($callback), $Result);
+	}
 
 	public function mergeProvider() {
 		return array(
@@ -208,6 +221,26 @@ class ArrayObjectATest extends PHPUnit_Framework_TestCase {
 		}
 
 		return $data;
+	}
+	
+	public function uniqueProvider() {
+		return array(
+			array(
+				new ArrayObjectA(array(
+					array('g' => 1, 'n' => 1),
+					array('g' => 2, 'n' => 2),
+					array('g' => 1, 'n' => 3)
+						)
+				), function($e) {
+					return $e['g'];
+				},
+				new ArrayObjectA(array(
+					array('g' => 1, 'n' => 1),
+					array('g' => 2, 'n' => 2)
+						)
+				)
+			)
+		);
 	}
 
 }
