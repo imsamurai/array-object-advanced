@@ -98,7 +98,16 @@ class ArrayObjectA extends ArrayObject implements JsonSerializable {
 						->map(function($group) {
 							return $group[0];
 						});
-		return new ArrayObjectA(array_values($that->getArrayCopy()));
+		return $that->resetKeys();
+	}
+	
+	/**
+	 * Reset array keys to integer from 0 to n
+	 * 
+	 * @return ArrayObjectA
+	 */
+	public function resetKeys() {
+		return new ArrayObjectA(array_values($this->getArrayCopy()));
 	}
 
 }
