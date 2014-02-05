@@ -119,7 +119,7 @@ class ArrayObjectATest extends PHPUnit_Framework_TestCase {
 	public function testSerialize($Array, $result) {
 		$this->assertSame(json_encode($Array), $result);
 	}
-	
+
 	/**
 	 * Test unique
 	 * 
@@ -143,33 +143,33 @@ class ArrayObjectATest extends PHPUnit_Framework_TestCase {
 	public function mapProvider() {
 		return array(
 			array(new ArrayObjectA(array('a', 'c', 'd')), function($e) {
-			return "$e 1";
-		}, new ArrayObjectA(array('a 1', 'c 1', 'd 1')), true),
+				return "$e 1";
+			}, new ArrayObjectA(array('a 1', 'c 1', 'd 1')), true),
 			array(new ArrayObjectA(array('a', 'c', 'd')), function($e) {
-			return "$e 1";
-		}, new ArrayObjectA(array('a 2', 'c 2', 'd 2')), false)
+				return "$e 1";
+			}, new ArrayObjectA(array('a 2', 'c 2', 'd 2')), false)
 		);
 	}
 
 	public function filterProvider() {
 		return array(
 			array(new ArrayObjectA(array('a', 'c', 'd')), function($e) {
-			return $e == 'c';
-		}, new ArrayObjectA(array('c')), true),
+				return $e == 'c';
+			}, new ArrayObjectA(array('c')), true),
 			array(new ArrayObjectA(array('a', 'c', 'd')), function($e) {
-			return $e == 'd';
-		}, new ArrayObjectA(array('a', 'c', 'd')), false)
+				return $e == 'd';
+			}, new ArrayObjectA(array('a', 'c', 'd')), false)
 		);
 	}
 
 	public function reduceProvider() {
 		return array(
 			array(new ArrayObjectA(array(1, 2, 3)), function($e, $acc) {
-			return (int) $acc + $e;
-		}, 1 + 2 + 3, true),
+				return (int)$acc + $e;
+			}, 1 + 2 + 3, true),
 			array(new ArrayObjectA(array('a', 'c', 'd')), function($e, $acc) {
-			return (int) $acc + 1;
-		}, 0, false)
+				return (int)$acc + 1;
+			}, 0, false)
 		);
 	}
 
@@ -182,8 +182,8 @@ class ArrayObjectATest extends PHPUnit_Framework_TestCase {
 					array('g' => 1, 'n' => 3)
 						)
 				), function($e) {
-			return $e['g'];
-		}, new ArrayObjectA(array(
+					return $e['g'];
+				}, new ArrayObjectA(array(
 					1 => array(
 						array('g' => 1, 'n' => 1),
 						array('g' => 1, 'n' => 3)
@@ -222,7 +222,7 @@ class ArrayObjectATest extends PHPUnit_Framework_TestCase {
 
 		return $data;
 	}
-	
+
 	public function uniqueProvider() {
 		return array(
 			array(

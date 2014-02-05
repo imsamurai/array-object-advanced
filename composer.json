@@ -1,0 +1,31 @@
+{
+  "name": "imsamurai/array-object-advanced",
+  "description": "Advanced implementation of ArrayObject",
+  "type": "cakephp-plugin",
+  "keywords": [
+    "cakephp",
+    "ArrayObject",
+    "plugin"
+  ],
+  "homepage": "http://github.com/imsamurai/array-object-advanced",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Shamray Alexander",
+      "email": "im.samuray@gmail.com",
+      "homepage": "https://imsamurai.me",
+      "role": "Maintainer"
+    }
+  ],
+  "require": {
+    "composer/installers": "*"
+  },
+  "support": {
+    "email": "im.samuray@gmail.com",
+    "issues": "https://github.com/imsamurai/array-object-advanced/issues",
+    "source": "https://github.com/imsamurai/array-object-advanced"
+  },
+  "extra": {
+    "installer-name": "ArrayObjectA"
+  }
+}
