@@ -5,6 +5,7 @@
  * Date: Oct 30, 2013
  * Time: 5:21:33 PM
  */
+require_once dirname(__FILE__) . DS . 'CallbackFilterIterator.php';
 
 /**
  * Advanced array object
@@ -85,7 +86,7 @@ class ArrayObjectA extends ArrayObject implements JsonSerializable {
 	public function jsonSerialize() {
 		return $this->getArrayCopy();
 	}
-	
+
 	/**
 	 * Make unique
 	 * 
@@ -94,13 +95,13 @@ class ArrayObjectA extends ArrayObject implements JsonSerializable {
 	 */
 	public function unique(callable $callback) {
 		$that = $this
-						->group($callback)
-						->map(function($group) {
-							return $group[0];
-						});
+				->group($callback)
+				->map(function($group) {
+					return $group[0];
+				});
 		return $that->resetKeys();
 	}
-	
+
 	/**
 	 * Reset array keys to integer from 0 to n
 	 * 
