@@ -5,7 +5,6 @@
  * Date: Oct 30, 2013
  * Time: 5:21:33 PM
  */
-require_once dirname(__FILE__) . DS . 'CallbackFilterIterator.php';
 
 /**
  * Advanced array object
@@ -48,8 +47,8 @@ class ArrayObjectA extends ArrayObject implements JsonSerializable {
 	 * @return \ArrayObjectA
 	 */
 	public function filter(callable $callback, $resetKeys = true) {
-		$Iterator = new CallbackFilterIterator($this->getIterator(), $callback);
-		return new ArrayObjectA(iterator_to_array($Iterator, !$resetKeys));
+		$array = array_filter($this->getArrayCopy(), $callback);
+		return new ArrayObjectA($resetKeys ? array_values($array) : $array);
 	}
 
 	/**
