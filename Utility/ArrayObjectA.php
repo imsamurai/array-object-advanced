@@ -113,10 +113,14 @@ class ArrayObjectA extends ArrayObject implements JsonSerializable {
 	/**
 	 * Slice array
 	 * 
+	 * @param int $offset
+	 * @param int $length
+	 * @param bool $preserveKeys
+	 * 
 	 * @return \ArrayObjectA
 	 */
-	public function slice($offset, $length = null, $preserve_keys = false) {
-		return new static(array_slice($this->getArrayCopy(), $offset, $length, $preserve_keys));
+	public function slice($offset, $length = null, $preserveKeys = false) {
+		return new static(array_slice($this->getArrayCopy(), $offset, $length, $preserveKeys));
 	}
 
 }

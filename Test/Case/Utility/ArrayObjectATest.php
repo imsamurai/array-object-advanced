@@ -168,14 +168,13 @@ class ArrayObjectATest extends PHPUnit_Framework_TestCase {
 	 * @param array $array
 	 * @param int $offset
 	 * @param int $length
-	 * @param bool $preserve_keys
+	 * @param bool $preserveKeys
 	 * @param array $result
 	 * 
 	 * @dataProvider sliceProvider
 	 */
-	public function testSlice(array $array, $offset, $length, $preserve_keys, array $result) {
-		$this->assertSame((new ArrayObjectA($array))->slice($offset, $length, $preserve_keys)->getArrayCopy(), $result);
-		
+	public function testSlice(array $array, $offset, $length, $preserveKeys, array $result) {
+		$this->assertSame((new ArrayObjectA($array))->slice($offset, $length, $preserveKeys)->getArrayCopy(), $result);
 	}
 
 	/**
