@@ -133,6 +133,11 @@ class ArrayObjectATest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals($Array1->unique($callback), $Result);
 	}
 
+	/**
+	 * Data provider for testMerge
+	 * 
+	 * @return array
+	 */
 	public function mergeProvider() {
 		return array(
 			array(new ArrayObjectA(array('a', 'c', 'd')), new ArrayObjectA(array('b', 'c', 'e')), new ArrayObjectA(array('a', 'c', 'd', 'b', 'c', 'e')), true),
@@ -140,6 +145,11 @@ class ArrayObjectATest extends PHPUnit_Framework_TestCase {
 		);
 	}
 
+	/**
+	 * Data provider for testMap
+	 * 
+	 * @return array
+	 */
 	public function mapProvider() {
 		return array(
 			array(new ArrayObjectA(array('a', 'c', 'd')), function($e) {
@@ -151,6 +161,11 @@ class ArrayObjectATest extends PHPUnit_Framework_TestCase {
 		);
 	}
 
+	/**
+	 * Data provider for testFilter
+	 * 
+	 * @return array
+	 */
 	public function filterProvider() {
 		return array(
 			array(new ArrayObjectA(array('a', 'c', 'd')), function($e) {
@@ -162,6 +177,11 @@ class ArrayObjectATest extends PHPUnit_Framework_TestCase {
 		);
 	}
 
+	/**
+	 * Data provider for testReduce
+	 * 
+	 * @return array
+	 */
 	public function reduceProvider() {
 		return array(
 			array(new ArrayObjectA(array(1, 2, 3)), function($e, $acc) {
@@ -173,6 +193,11 @@ class ArrayObjectATest extends PHPUnit_Framework_TestCase {
 		);
 	}
 
+	/**
+	 * Data provider for testGroup
+	 * 
+	 * @return array
+	 */
 	public function groupProvider() {
 		return array(
 			array(
@@ -196,6 +221,11 @@ class ArrayObjectATest extends PHPUnit_Framework_TestCase {
 		);
 	}
 
+	/**
+	 * Data provider for testSerialize
+	 * 
+	 * @return array
+	 */
 	public function jsonProvider() {
 		$arrays = array(
 			array(
@@ -223,6 +253,11 @@ class ArrayObjectATest extends PHPUnit_Framework_TestCase {
 		return $data;
 	}
 
+	/**
+	 * Data provider for testUnique
+	 * 
+	 * @return array
+	 */
 	public function uniqueProvider() {
 		return array(
 			array(
