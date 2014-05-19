@@ -19,11 +19,10 @@ class AllArrayObjectATest extends PHPUnit_Framework_TestSuite {
 	 */
 	public static function suite() {
 		$suite = new CakeTestSuite('All ArrayObjectA Tests');
-		/*
-		  $basePath = App::pluginPath('ArrayObjectA') . 'Test' . DS . 'Case' . DS;
-		  $suite->addTestDirectoryRecursive($basePath);
-		 */
-		debug('Need to write tests!');
+
+		$basePath = App::pluginPath('ArrayObjectA') . 'Test' . DS . 'Case' . DS;
+		$suite->addTestDirectoryRecursive($basePath);
+
 		return $suite;
 	}
 

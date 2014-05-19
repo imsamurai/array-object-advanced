@@ -48,7 +48,7 @@ class ArrayObjectA extends ArrayObject implements JsonSerializable {
 	 */
 	public function filter(callable $callback, $resetKeys = true) {
 		$array = array_filter($this->getArrayCopy(), $callback);
-		return new ArrayObjectA($resetKeys ? array_values($array) : $array);
+		return new static($resetKeys ? array_values($array) : $array);
 	}
 
 	/**
@@ -74,7 +74,7 @@ class ArrayObjectA extends ArrayObject implements JsonSerializable {
 			$group = $callback($item);
 			$array[$group][] = $item;
 		}
-		return new ArrayObjectA($array);
+		return new static($array);
 	}
 
 	/**
@@ -104,10 +104,10 @@ class ArrayObjectA extends ArrayObject implements JsonSerializable {
 	/**
 	 * Reset array keys to integer from 0 to n
 	 * 
-	 * @return ArrayObjectA
+	 * @return \ArrayObjectA
 	 */
 	public function resetKeys() {
-		return new ArrayObjectA(array_values($this->getArrayCopy()));
+		return new static(array_values($this->getArrayCopy()));
 	}
 
 }
