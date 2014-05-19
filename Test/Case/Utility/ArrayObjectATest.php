@@ -161,6 +161,22 @@ class ArrayObjectATest extends PHPUnit_Framework_TestCase {
 		}), 'Unique');
 		$this->assertInstanceOf($className, $Array->resetKeys(), 'Reset keys');
 	}
+	
+	/**
+	 * Test slice
+	 * 
+	 * @param array $array
+	 * @param int $offset
+	 * @param int $length
+	 * @param bool $preserve_keys
+	 * @param array $result
+	 * 
+	 * @dataProvider sliceProvider
+	 */
+	public function testSlice(array $array, $offset, $length, $preserve_keys, array $result) {
+		$this->assertSame((new ArrayObjectA($array))->slice($offset, $length, $preserve_keys)->getArrayCopy(), $result);
+		
+	}
 
 	/**
 	 * Data provider for testMerge
@@ -304,6 +320,133 @@ class ArrayObjectATest extends PHPUnit_Framework_TestCase {
 						)
 				)
 			)
+		);
+	}
+	
+	/**
+	 * Data provider for testSlice
+	 * 
+	 * @return array
+	 */
+	public function sliceProvider() {
+		return array(
+			//set #0
+			array(
+				//array
+				array(
+					0 => 'one', 
+					1 => 'two', 
+					2 => 'three'
+					),
+				//offset
+				1,
+				//length
+				null,
+				//preserve_key
+				true,
+				//result
+				array(
+					1 => 'two', 
+					2 => 'three'
+				)
+			),
+			//set #1
+			array(
+				//array
+				array(
+					0 => 'one', 
+					1 => 'two', 
+					2 => 'three'
+					),
+				//offset
+				1,
+				//length
+				null,
+				//preserve_key
+				false,
+				//result
+				array(
+					0 => 'two', 
+					1 => 'three'
+				)
+			),
+			//set #1
+			array(
+				//array
+				array(
+					0 => 'one', 
+					1 => 'two', 
+					2 => 'three'
+					),
+				//offset
+				1,
+				//length
+				1,
+				//preserve_key
+				true,
+				//result
+				array(
+					1 => 'two',
+				)
+			),
+			//set #2
+			array(
+				//array
+				array(
+					0 => 'one', 
+					1 => 'two', 
+					2 => 'three'
+					),
+				//offset
+				1,
+				//length
+				1,
+				//preserve_key
+				false,
+				//result
+				array(
+					0 => 'two',
+				)
+			),
+			//set #3
+			array(
+				//array
+				array(
+					0 => 'one', 
+					1 => 'two', 
+					2 => 'three'
+					),
+				//offset
+				3,
+				//length
+				10,
+				//preserve_key
+				false,
+				//result
+				array(
+				)
+			),
+			//set #4
+			array(
+				//array
+				array(
+					0 => 'one', 
+					1 => 'two', 
+					2 => 'three'
+					),
+				//offset
+				0,
+				//length
+				10,
+				//preserve_key
+				true,
+				//result
+				array(
+					0 => 'one', 
+					1 => 'two', 
+					2 => 'three'
+				)
+			),
 		);
 	}
 

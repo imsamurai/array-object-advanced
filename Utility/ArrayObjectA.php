@@ -109,5 +109,14 @@ class ArrayObjectA extends ArrayObject implements JsonSerializable {
 	public function resetKeys() {
 		return new static(array_values($this->getArrayCopy()));
 	}
+	
+	/**
+	 * Slice array
+	 * 
+	 * @return \ArrayObjectA
+	 */
+	public function slice($offset, $length = null, $preserve_keys = false) {
+		return new static(array_slice($this->getArrayCopy(), $offset, $length, $preserve_keys));
+	}
 
 }
