@@ -139,16 +139,26 @@ class ArrayObjectATest extends PHPUnit_Framework_TestCase {
 	public function testInheritance() {
 		$className = '_ArrayObjectA';
 		if (!class_exists($className)) {
+			//@codingStandardsIgnoreStart
 			eval("class $className extends ArrayObjectA {}");
+			//@codingStandardsIgnoreEnd
 		}
 		$Array = new $className(array('one', 'two', 'three'));
 		$this->assertInstanceOf($className, $Array);
 		$this->assertInstanceOf($className, $Array->merge(new ArrayObjectA(array('four'))), 'Merge with ArrayObjectA');
 		$this->assertInstanceOf($className, $Array->merge(new $className(array('four'))), 'Merge with self class');
-		$this->assertInstanceOf($className, $Array->filter(function() { return true; }), 'Filter');
-		$this->assertInstanceOf($className, $Array->map(function($Item) { return $Item; }), 'Map');
-		$this->assertInstanceOf($className, $Array->group(function() { return 1; }), 'Group');
-		$this->assertInstanceOf($className, $Array->unique(function() { return 1; }), 'Unique');
+		$this->assertInstanceOf($className, $Array->filter(function() { 
+			return true; 
+		}), 'Filter');
+		$this->assertInstanceOf($className, $Array->map(function($Item) { 
+			return $Item; 
+		}), 'Map');
+		$this->assertInstanceOf($className, $Array->group(function() { 
+			return 1; 
+		}), 'Group');
+		$this->assertInstanceOf($className, $Array->unique(function() { 
+			return 1;
+		}), 'Unique');
 		$this->assertInstanceOf($className, $Array->resetKeys(), 'Reset keys');
 	}
 
