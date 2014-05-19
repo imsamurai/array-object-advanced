@@ -18,7 +18,8 @@
     }
   ],
   "require": {
-    "composer/installers": "*"
+    "composer/installers": "*",
+	"imsamurai/arraysort": "1.0.*"
   },
   "support": {
     "email": "im.samuray@gmail.com",

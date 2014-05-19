@@ -6,6 +6,8 @@
  * Time: 5:21:33 PM
  */
 
+App::uses('ArraySort', 'ArraySort.Utility');
+
 /**
  * Advanced array object
  *  
@@ -121,6 +123,18 @@ class ArrayObjectA extends ArrayObject implements JsonSerializable {
 	 */
 	public function slice($offset, $length = null, $preserveKeys = false) {
 		return new static(array_slice($this->getArrayCopy(), $offset, $length, $preserveKeys));
+	}
+	
+	/**
+	 * Multisort array
+	 * 
+	 * @param array|string $params
+	 * 
+	 * @return \ArrayObjectA
+	 * @see ArraySort::multisort
+	 */
+	public function multisort($params) {
+		return new static(ArraySort::multisort($this->getArrayCopy(), $params));
 	}
 
 }
