@@ -6,6 +6,10 @@
  * Time: 5:30:59 PM
  * Format: http://book.cakephp.org/2.0/en/development/testing.html
  */
+
+/**
+ * Load utility
+ */
 require_once dirname(dirname(dirname(dirname(__FILE__)))) . DIRECTORY_SEPARATOR . 'Utility' . DIRECTORY_SEPARATOR . 'ArrayObjectA.php';
 
 /**
